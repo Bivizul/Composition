@@ -6,7 +6,7 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 data class  GameResult(
     val winner: Boolean,
-    val CountOfRightAnswers: Int,
+    val countOfRightAnswers: Int,
     val countOfQuestion: Int,
-    val GameSettings: GameSettings
+    val gameSettings: GameSettings
 ) : Parcelable
