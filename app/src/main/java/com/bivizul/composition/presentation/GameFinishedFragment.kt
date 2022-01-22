@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
+import androidx.navigation.fragment.findNavController
 import com.bivizul.composition.R
 import com.bivizul.composition.databinding.FragmentGameFinishedBinding
 import com.bivizul.composition.domain.entity.GameResult
@@ -40,17 +41,6 @@ class GameFinishedFragment : Fragment() {
     }
 
     private fun setupClickListeners(){
-        val callback = object : OnBackPressedCallback(true) {
-            override fun handleOnBackPressed() {
-                retryGame()
-            }
-        }
-        // при нажатии кнопки назад выполняем метод retryGame который возвращает нас на activity выбора
-        requireActivity().onBackPressedDispatcher.addCallback(
-            // удаляет слушателей после использования
-            viewLifecycleOwner,
-            callback
-        )
         binding.buttonRetry.setOnClickListener{
             retryGame()
         }
@@ -106,16 +96,12 @@ class GameFinishedFragment : Fragment() {
     }
 
     private fun retryGame() {
-        requireActivity().supportFragmentManager.popBackStack(
-            GameFragment.NAME,
-            // удаляем фрагмент на который перешли
-            FragmentManager.POP_BACK_STACK_INCLUSIVE
-        )
+        findNavController().popBackStack()
     }
 
     companion object {
 
-        private const val KEY_GAME_RESULT = "game_result"
+        const val KEY_GAME_RESULT = "game_result"
 
         fun newInstance(gameResult: GameResult): GameFinishedFragment {
             return GameFinishedFragment().apply {
