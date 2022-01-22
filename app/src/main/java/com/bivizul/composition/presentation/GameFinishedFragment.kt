@@ -9,7 +9,6 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bivizul.composition.R
 import com.bivizul.composition.databinding.FragmentGameFinishedBinding
-import com.bivizul.composition.domain.entity.GameResult
 
 class GameFinishedFragment : Fragment() {
 
@@ -41,20 +40,21 @@ class GameFinishedFragment : Fragment() {
     }
 
     private fun bindViews() {
+        binding.gameResult = args.gameResult
         with(binding) {
             emojiResult.setImageResource(getSmileResId())
-            tvRequiredAnswers.text = String.format(
-                getString(R.string.required_score),
-                args.gameResult.gameSettings.minCountOfRightAnswers
-            )
-            tvScoreAnswers.text = String.format(
-                getString(R.string.score_answers),
-                args.gameResult.countOfRightAnswers
-            )
-            tvRequiredPercentage.text = String.format(
-                getString(R.string.required_percentage),
-                args.gameResult.gameSettings.minPercentOfRightAnswers
-            )
+//            tvRequiredAnswers.text = String.format(
+//                getString(R.string.required_score),
+//                args.gameResult.gameSettings.minCountOfRightAnswers
+//            )
+//            tvScoreAnswers.text = String.format(
+//                getString(R.string.score_answers),
+//                args.gameResult.countOfRightAnswers
+//            )
+//            tvRequiredPercentage.text = String.format(
+//                getString(R.string.required_percentage),
+//                args.gameResult.gameSettings.minPercentOfRightAnswers
+//            )
             tvScorePercentage.text = String.format(
                 getString(R.string.score_percentage),
                 getPercentOfRightAnswers()
